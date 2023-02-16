@@ -30,7 +30,8 @@ export class LoginFormInner extends React.Component {
         invalidLoginPassword: false,
         showPassword: false,
         showSettings: false,
-        serverUrl: null
+        serverUrl: null,
+        serverError: null
     };
 
     keyDownTextField = (e) => {
@@ -72,12 +73,17 @@ export class LoginFormInner extends React.Component {
             if (status === 401) {
                 this.setState({invalidLoginPassword: true});
             }
+            if (status === 404) {
+                this.setState({serverError: "Invalid server URL!", invalidLoginPassword: false});
+            }
             if (status === 200) {
                 Cookies.remove("Authorization");
                 window.sessionStorage.clear();
                 window.sessionStorage.setItem("auth-token", JSON.parse(text).token);
                 window.location.hash = "#/";
             }
+        }).catch((error) => {
+            this.setState({serverError: error.message, invalidLoginPassword: false});
         });
     };
 
@@ -99,6 +105,15 @@ export class LoginFormInner extends React.Component {
         return <div/>;
     };
 
+    getServerError = () => {
+        if (this.state.serverError != null && this.state.serverError.trim().length !== 0) {
+            return (<Alert severity="error" sx={{mb: 1}}>
+                {this.state.serverError}
+            </Alert>);
+        }
+        return <div/>;
+    };
+
     render() {
         return (<div>
             <Dialog fullWidth maxWidth="sm" open={true}>
@@ -107,6 +122,7 @@ export class LoginFormInner extends React.Component {
                     <Box sx={{display: "grid", gridTemplateRows: "repeat(2 1fr)"}}>
                         {this.getWarning()}
                         {this.getServerUrlWarning()}
+                        {this.getServerError()}
                         <TextField
                             id="login"
                             type="text"

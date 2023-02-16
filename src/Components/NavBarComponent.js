@@ -244,7 +244,7 @@ export class NavBarComponentInner extends React.Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.setState({showLogoutConfirmation: false})}>Cancel</Button>
-                        <Button variant="contained" color="error" onClick={() => this.props.logout()}>Log out</Button>
+                        <Button variant="contained" color="error" onClick={() => this.props.logout(this.props.serverUrl)}>Log out</Button>
                     </DialogActions>
                 </Dialog>
             </div>);

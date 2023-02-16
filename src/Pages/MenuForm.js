@@ -30,8 +30,8 @@ export class MenuFormInner extends React.Component {
             }).then((text) => {
                 if (text === "true") {
                     this.setState({currentUrl});
-                    this.props.getBreadcrumbs(currentUrl);
-                    this.props.getNextLevelMenus(currentUrl);
+                    this.props.getBreadcrumbs(this.props.serverUrl, currentUrl);
+                    this.props.getNextLevelMenus(this.props.serverUrl, currentUrl);
                 } else if (text === "false") {
                     window.history.pushState("", "/", "404.html");
                     window.location.pathname = "404.html";

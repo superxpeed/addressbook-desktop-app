@@ -29,9 +29,9 @@ export class AdminFormInner extends React.Component {
     componentDidMount() {
         const EventSource = EventSourcePolyfill;
         const currentUrl = window.location.hash;
-        this.props.getBreadcrumbs(HashUtils.cleanHash(currentUrl));
+        this.props.getBreadcrumbs(this.props.serverUrl, HashUtils.cleanHash(currentUrl));
         const token = window.sessionStorage.getItem("auth-token");
-        const newEventSource = new EventSource("/rest/admin/jvmState", {
+        const newEventSource = new EventSource(this.props.serverUrl + "rest/admin/jvmState", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -199,7 +199,8 @@ export class AdminFormInner extends React.Component {
 
 export const AdminForm = connect((state) => ({
     breadcrumbs: state.menuReducer.breadcrumbs,
-    useDarkTheme: state.listReducer.useDarkTheme
+    useDarkTheme: state.listReducer.useDarkTheme,
+    serverUrl: state.listReducer.serverUrl
 }), (dispatch) => ({
     getBreadcrumbs: bindActionCreators(MenuActions.getBreadcrumbs, dispatch)
 }), null, {withRef: true})(AdminFormInner);

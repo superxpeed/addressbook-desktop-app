@@ -11,14 +11,14 @@ import {
 import {asyncCommonCatch, ifNoAuthorizedRedirect} from "./ListActions";
 import * as url from "../Common/Url";
 
-export function getNextLevelMenus(currentUrl) {
+export function getNextLevelMenus(serverUrl, currentUrl) {
     let isOk = false;
     return function (dispatch) {
         const headers = new Headers();
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(`${url.GET_NEXT_LEVEL_MENUS}?currentUrl=${currentUrl}`, {
+        fetch(`${serverUrl}${url.GET_NEXT_LEVEL_MENUS}?currentUrl=${currentUrl}`, {
             method: "get", headers,
         })
             .then((response) => {
@@ -59,14 +59,14 @@ export function showCommonAlert(message) {
     };
 }
 
-export function getBreadcrumbs(currentUrl) {
+export function getBreadcrumbs(serverUrl, currentUrl) {
     let isOk = false;
     return function (dispatch) {
         const headers = new Headers();
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(`${url.GET_BREADCRUMBS}?currentUrl=${currentUrl}`, {
+        fetch(`${serverUrl}${url.GET_BREADCRUMBS}?currentUrl=${currentUrl}`, {
             method: "get", headers,
         })
             .then((response) => {

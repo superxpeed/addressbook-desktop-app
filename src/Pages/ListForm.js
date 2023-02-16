@@ -49,7 +49,7 @@ export class ListFormInner extends React.Component {
             this.props.sortOrderOrganization,
             Utils.convertFilterObj(this.props.filterObjOrganization, this.props.customFilterFnsOrganization),
             Caches.ORGANIZATION_CACHE);
-        this.props.getBreadcrumbs(HashUtils.cleanHash(currentUrl));
+        this.props.getBreadcrumbs(this.props.serverUrl, HashUtils.cleanHash(currentUrl));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
