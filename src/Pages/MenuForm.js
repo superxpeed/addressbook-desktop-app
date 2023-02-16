@@ -22,8 +22,8 @@ export class MenuFormInner extends React.Component {
         if (this.state.currentUrl !== currentUrl) {
             const headers = new Headers();
             AuthTokenUtils.addAuthToken(headers);
-            fetch(`${url.CHECK_IF_PAGE_EXISTS}?page=${currentUrl}`, {
-                method: "get", headers
+            fetch(this.props.serverUrl + url.CHECK_IF_PAGE_EXISTS + `?page=${currentUrl}`, {
+                method: "get", headers,
             }).then((response) => {
                 ifNoAuthorizedRedirect(response);
                 return response.text();
@@ -86,6 +86,7 @@ export class MenuFormInner extends React.Component {
 export const MenuForm = connect((state) => ({
     breadcrumbs: state.menuReducer.breadcrumbs,
     menus: state.menuReducer.menus,
+    serverUrl: state.listReducer.serverUrl,
     useDarkTheme: state.listReducer.useDarkTheme
 }), (dispatch) => ({
     getBreadcrumbs: bindActionCreators(MenuActions.getBreadcrumbs, dispatch),

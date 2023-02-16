@@ -2,6 +2,7 @@ import {
     ADD_ALERT,
     AuthTokenUtils,
     Caches,
+    CHANGE_SERVER_URL,
     FAIL,
     OPEN_CLOSE_DRAWER,
     REQUEST,
@@ -54,6 +55,14 @@ export function changeUseDarkTheme(useDarkTheme) {
     };
 }
 
+export function changeServerUrl(serverUrl) {
+    return (dispatch) => {
+        dispatch({
+            type: CHANGE_SERVER_URL, serverUrl: serverUrl
+        });
+    };
+}
+
 export function getList(url, filterDto = null, cacheName) {
     let isOk = false;
     return function (dispatch) {
@@ -65,7 +74,7 @@ export function getList(url, filterDto = null, cacheName) {
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
         fetch(url, {
-            method: "post", headers, body: JSON.stringify(filterDto)
+            method: "post", headers, body: JSON.stringify(filterDto),
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);

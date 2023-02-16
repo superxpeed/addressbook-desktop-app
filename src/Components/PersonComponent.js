@@ -83,8 +83,8 @@ export class PersonComponentInner extends React.Component {
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.GET_CONTACT_LIST + "?personId=" + id, {
-            method: "get", headers: headers
+        fetch(this.props.serverUrl + url.GET_CONTACT_LIST + "?personId=" + id, {
+            method: "get", headers: headers,
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -124,8 +124,8 @@ export class PersonComponentInner extends React.Component {
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.SAVE_CONTACT_LIST + "?personId=" + personId, {
-            method: "post", headers: headers, body: JSON.stringify(this.state.contactList)
+        fetch(this.props.serverUrl + url.SAVE_CONTACT_LIST + "?personId=" + personId, {
+            method: "post", headers: headers, body: JSON.stringify(this.state.contactList),
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -138,7 +138,7 @@ export class PersonComponentInner extends React.Component {
                         person: {$set: savedPerson}, contactList: {$set: JSON.parse(text).data},
                     }));
                     if (creation) {
-                        this.props.lockUnlockRecord(Caches.PERSON_CACHE, personId, "unlock", this.props.showNotification);
+                        this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, personId, "unlock", this.props.showNotification);
                         this.props.showCommonAlert("Person created!")
                         this.props.onUpdate(savedPerson);
                     } else {
@@ -161,8 +161,8 @@ export class PersonComponentInner extends React.Component {
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
         let isOk = false;
-        fetch(url.SAVE_PERSON, {
-            method: "post", headers: headers, body: JSON.stringify(targetPerson)
+        fetch(this.props.serverUrl + url.SAVE_PERSON, {
+            method: "post", headers: headers, body: JSON.stringify(targetPerson),
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -174,7 +174,7 @@ export class PersonComponentInner extends React.Component {
                     savedPerson = JSON.parse(text).data;
                     let personId = creation ? savedPerson.id : targetPerson.id;
                     if (creation) {
-                        this.props.lockUnlockRecord(Caches.PERSON_CACHE, personId, "lock", this.props.showNotification, (result) => {
+                        this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, personId, "lock", this.props.showNotification, (result) => {
                             if (result === "success") {
                                 this.setState({locked: true});
                                 this.saveContacts(creation, personId, savedPerson);
@@ -217,7 +217,7 @@ export class PersonComponentInner extends React.Component {
     componentDidMount() {
         if (this.state.person["id"] != null && this.props.forUpdate) {
             this.getContactList(this.state.person["id"]);
-            this.props.lockUnlockRecord(Caches.PERSON_CACHE, this.state.person["id"], "lock", this.props.showNotification, this.lockCallback);
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, this.state.person["id"], "lock", this.props.showNotification, this.lockCallback);
         } else {
             this.clearContactList();
             this.setState({locked: true});
@@ -225,7 +225,7 @@ export class PersonComponentInner extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.props.forUpdate) this.props.lockUnlockRecord(Caches.PERSON_CACHE, this.state.person["id"], "unlock", this.props.showNotification);
+        if (this.props.forUpdate) this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, this.state.person["id"], "unlock", this.props.showNotification);
     }
 
     handleChangeContact = (id, e) => {
@@ -348,7 +348,7 @@ export class PersonComponentInner extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.person !== prevProps.person) {
             if (this.state.person != null) {
-                this.props.lockUnlockRecord(Caches.PERSON_CACHE, this.state.person["id"], "unlock", this.props.showNotification);
+                this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, this.state.person["id"], "unlock", this.props.showNotification);
             }
             let newResume = this.props.person["resume"] == null ? "<div/>" : this.props.person["resume"];
             let salaryPerson = this.props.person["salary"] == null ? "" : this.props.person["salary"].substring(0, this.props.person["salary"].length - 4)
@@ -360,7 +360,7 @@ export class PersonComponentInner extends React.Component {
                 salary: salaryPerson,
                 currency: currencyPerson
             });
-            this.props.lockUnlockRecord(Caches.PERSON_CACHE, this.props.person["id"], "lock", this.props.showNotification, this.lockCallback);
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, this.props.person["id"], "lock", this.props.showNotification, this.lockCallback);
         }
     }
 
@@ -521,7 +521,8 @@ export class PersonComponentInner extends React.Component {
 
 
 export const PersonComponent = connect((state) => ({
-    showNotification: state.listReducer.showNotification
+    showNotification: state.listReducer.showNotification,
+    serverUrl: state.listReducer.serverUrl
 }), (dispatch) => ({
     showCommonErrorAlert: bindActionCreators(MenuActions.showCommonErrorAlert, dispatch),
     showCommonAlert: bindActionCreators(MenuActions.showCommonAlert, dispatch),

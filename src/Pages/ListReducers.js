@@ -29,6 +29,7 @@ const initialState = {
     customFilterFnsPerson: {},
     showNotification: false,
     drawerOpened: false,
+    serverUrl: null,
     useDarkTheme: window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
 };
 
@@ -84,6 +85,10 @@ export default function listReducer(state = initialState, action = {}) {
         case types.OPEN_CLOSE_DRAWER:
             return Object.assign({}, state, {
                 drawerOpened: action.isOpened
+            });
+        case types.CHANGE_SERVER_URL:
+            return Object.assign({}, state, {
+                serverUrl: action.serverUrl
             });
         case types.GET_LIST + Caches.PERSON_CACHE + types.REQUEST:
             return Object.assign({}, state, {

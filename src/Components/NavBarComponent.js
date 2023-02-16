@@ -50,8 +50,8 @@ export class NavBarComponentInner extends React.Component {
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.GET_USER_INFO, {
-            method: "get", headers
+        fetch(this.props.serverUrl + url.GET_USER_INFO, {
+            method: "get", headers,
         })
             .then((response) => {
                 CommonActions.ifNoAuthorizedRedirect(response);
@@ -76,8 +76,8 @@ export class NavBarComponentInner extends React.Component {
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.GET_BUILD_INFO, {
-            method: "get", headers
+        fetch(this.props.serverUrl + url.GET_BUILD_INFO, {
+            method: "get", headers,
         })
             .then((response) => {
                 CommonActions.ifNoAuthorizedRedirect(response);
@@ -253,6 +253,7 @@ export class NavBarComponentInner extends React.Component {
 
 export const NavBarComponent = connect((state) => ({
     showNotification: state.listReducer.showNotification,
+    serverUrl: state.listReducer.serverUrl,
     useDarkTheme: state.listReducer.useDarkTheme,
     alerts: state.menuReducer.alerts
 }), (dispatch) => ({

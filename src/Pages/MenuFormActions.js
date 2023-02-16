@@ -19,7 +19,7 @@ export function getNextLevelMenus(currentUrl) {
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
         fetch(`${url.GET_NEXT_LEVEL_MENUS}?currentUrl=${currentUrl}`, {
-            method: "get", headers
+            method: "get", headers,
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -67,7 +67,7 @@ export function getBreadcrumbs(currentUrl) {
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
         fetch(`${url.GET_BREADCRUMBS}?currentUrl=${currentUrl}`, {
-            method: "get", headers
+            method: "get", headers,
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -91,7 +91,7 @@ export function getBreadcrumbs(currentUrl) {
     };
 }
 
-export function lockUnlockRecord(type, id, action, showNotification, callback) {
+export function lockUnlockRecord(serverUrl, type, id, action, showNotification, callback) {
     let targetUrl = "";
     let isOk = false;
     if (action === "lock") {
@@ -102,8 +102,8 @@ export function lockUnlockRecord(type, id, action, showNotification, callback) {
     return function (dispatch) {
         const headers = new Headers();
         AuthTokenUtils.addAuthToken(headers);
-        fetch(`${targetUrl}?type=${type}&id=${id}`, {
-            method: "get", headers
+        fetch(`${serverUrl}${targetUrl}?type=${type}&id=${id}`, {
+            method: "get", headers,
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -130,13 +130,13 @@ export function lockUnlockRecord(type, id, action, showNotification, callback) {
     };
 }
 
-export function logout() {
+export function logout(serverUrl) {
     let isOk = false;
     return function () {
         const headers = new Headers();
         AuthTokenUtils.addAuthToken(headers);
-        fetch(url.LOGOUT, {
-            method: "get", headers
+        fetch(serverUrl + url.LOGOUT, {
+            method: "get", headers,
         }).then((response) => {
             isOk = response.ok;
             if (isOk) {

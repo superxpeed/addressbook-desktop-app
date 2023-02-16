@@ -1,12 +1,9 @@
 import React from "react";
 import {
-    Alert,
-    Box,
-    Dialog,
+    Alert, Box, Dialog,
     DialogActions,
     DialogTitle,
-    FormControl,
-    Grid,
+    FormControl, Grid,
     IconButton,
     InputAdornment,
     InputLabel,
@@ -23,6 +20,8 @@ import DialogContent from "@mui/material/DialogContent";
 import * as MenuActions from "./MenuFormActions";
 import * as url from "../Common/Url";
 import LoginIcon from "@mui/icons-material/Login";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import * as CommonActions from "./ListActions";
 
 export class LoginFormInner extends React.Component {
     state = {
@@ -30,6 +29,8 @@ export class LoginFormInner extends React.Component {
         password: "",
         invalidLoginPassword: false,
         showPassword: false,
+        showSettings: false,
+        serverUrl: null
     };
 
     keyDownTextField = (e) => {
@@ -62,8 +63,8 @@ export class LoginFormInner extends React.Component {
             login: this.state.login, password: this.state.password,
         };
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.AUTH, {
-            method: "post", headers, body: JSON.stringify(credentials)
+        fetch(this.props.serverUrl + url.AUTH, {
+            method: "post", headers, body: JSON.stringify(credentials),
         }).then((response) => {
             status = response.status;
             return response.text();
@@ -89,6 +90,15 @@ export class LoginFormInner extends React.Component {
         return <div/>;
     };
 
+    getServerUrlWarning = () => {
+        if (this.props.serverUrl == null || this.props.serverUrl.trim().length === 0) {
+            return (<Alert severity="error" sx={{mb: 1}}>
+                Server URL is empty!
+            </Alert>);
+        }
+        return <div/>;
+    };
+
     render() {
         return (<div>
             <Dialog fullWidth maxWidth="sm" open={true}>
@@ -96,6 +106,7 @@ export class LoginFormInner extends React.Component {
                 <DialogContent sx={{paddingBottom: "16px"}}>
                     <Box sx={{display: "grid", gridTemplateRows: "repeat(2 1fr)"}}>
                         {this.getWarning()}
+                        {this.getServerUrlWarning()}
                         <TextField
                             id="login"
                             type="text"
@@ -129,17 +140,50 @@ export class LoginFormInner extends React.Component {
                     </Box>
                 </DialogContent>
                 <DialogActions sx={{paddingTop: "0px"}}>
-                    <Grid container sx={{justifyContent: "center"}}>
-                        <Button startIcon={<LoginIcon/>} sx={{ml: 2, mr: 2, mb: 2, width: "100%", height: "56px"}}
+                    <Grid container sx={{justifyContent: "left"}}>
+                        <Button startIcon={<LoginIcon/>}
+                                sx={{ml: 2, mr: 2, mb: 2, width: "calc(100% - 174px)", height: "56px"}}
                                 variant="contained"
+                                disabled={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0}
                                 onClick={this.login}>Login</Button>
+                        <Button startIcon={<SettingsOutlinedIcon/>} sx={{ml: 0, mr: 2, mb: 2, height: "56px"}}
+                                onClick={() => this.setState({showSettings: true})}
+                                variant="contained">Settings</Button>
                     </Grid>
                 </DialogActions>
+            </Dialog>
+            <Dialog
+                onClose={() => this.setState({showSettings: false})}
+                aria-labelledby="roles-dialog-title"
+                open={this.state.showSettings}
+            >
+                <DialogTitle id="roles-dialog-title" onClose={() => this.setState({showSettings: false})}>
+                    Settings
+                </DialogTitle>
+                <DialogContent dividers>
+                    <TextField
+                        error={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0}
+                        id="serverUrl"
+                        type="text"
+                        label="Enter server URL"
+                        value={this.props.serverUrl}
+                        variant="outlined"
+                        autoComplete="off"
+                        sx={{mt: 1, display: "flex", height: "80px"}}
+                        helperText={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0 ? "Required field!" : ""}
+                        onChange={(e) => {
+                            this.props.changeServerUrl(e.target.value);
+                        }}
+                    />
+                </DialogContent>
             </Dialog>
         </div>);
     }
 }
 
-export const LoginForm = connect(null, (dispatch) => ({
-    clearAlerts: bindActionCreators(MenuActions.clearAlerts, dispatch),
+export const LoginForm = connect((state) => ({
+    serverUrl: state.listReducer.serverUrl
+}), (dispatch) => ({
+    changeServerUrl: bindActionCreators(CommonActions.changeServerUrl, dispatch),
+    clearAlerts: bindActionCreators(MenuActions.clearAlerts, dispatch)
 }), null, {withRef: true})(LoginFormInner);

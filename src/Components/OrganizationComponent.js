@@ -43,13 +43,13 @@ export class OrganizationComponentInner extends React.Component {
 
     componentWillUnmount() {
         if (this.state.organization["id"] != null && this.state.create === false) {
-            this.props.lockUnlockRecord(Caches.ORGANIZATION_CACHE, this.state.organization["id"], "unlock", this.props.showNotification);
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.ORGANIZATION_CACHE, this.state.organization["id"], "unlock", this.props.showNotification);
         }
     }
 
     updateData = () => {
         if (this.state.organization["id"] != null && this.state.create === false) {
-            this.props.lockUnlockRecord(Caches.ORGANIZATION_CACHE, this.state.organization["id"], "unlock", this.props.showNotification);
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.ORGANIZATION_CACHE, this.state.organization["id"], "unlock", this.props.showNotification);
         }
         if (this.props.organization["id"] == null) {
             this.setState({
@@ -58,7 +58,7 @@ export class OrganizationComponentInner extends React.Component {
                 }, create: true, locked: true,
             });
         } else {
-            this.props.lockUnlockRecord(Caches.ORGANIZATION_CACHE, this.props.organization["id"], "lock", this.props.showNotification, this.lockCallback);
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.ORGANIZATION_CACHE, this.props.organization["id"], "lock", this.props.showNotification, this.lockCallback);
             let org = Object.assign({}, this.props.organization);
             org["type"] = OrgTypes.getEngType(this.props.organization["type"]);
             this.setState({organization: org, create: false});
@@ -83,8 +83,8 @@ export class OrganizationComponentInner extends React.Component {
         AuthTokenUtils.addAuthToken(headers);
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json; charset=utf-8");
-        fetch(url.SAVE_ORGANIZATION, {
-            method: "post", headers: headers, body: JSON.stringify(this.state.organization)
+        fetch(this.props.serverUrl + url.SAVE_ORGANIZATION, {
+            method: "post", headers: headers, body: JSON.stringify(this.state.organization),
         })
             .then((response) => {
                 ifNoAuthorizedRedirect(response);
@@ -206,7 +206,8 @@ export class OrganizationComponentInner extends React.Component {
 }
 
 export const OrganizationComponent = connect((state) => ({
-    showNotification: state.listReducer.showNotification
+    showNotification: state.listReducer.showNotification,
+    serverUrl: state.listReducer.serverUrl
 }), (dispatch) => ({
     updateRow: bindActionCreators(TableActions.updateRow, dispatch),
     showCommonErrorAlert: bindActionCreators(MenuActions.showCommonErrorAlert, dispatch),

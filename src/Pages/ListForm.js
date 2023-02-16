@@ -94,7 +94,7 @@ export class ListFormInner extends React.Component {
                 name: "orgId", value: this.props.selectedRowsOrganization[0].id, comparator: "", type: "TextFilter",
             });
         }
-        this.props.getList(Url.GET_LIST + "?start=" + start + "&pageSize=" + pageSize + "&sortName=" + sortName + "&sortOrder=" + sortOrder + "&cache=" + cache, filterDto, cache);
+        this.props.getList(this.props.serverUrl + Url.GET_LIST + "?start=" + start + "&pageSize=" + pageSize + "&sortName=" + sortName + "&sortOrder=" + sortOrder + "&cache=" + cache, filterDto, cache);
     };
 
     updateSelectedPerson = (person) => {
@@ -284,6 +284,7 @@ export const ListForm = connect((state) => ({
     paginationOrganization: state.listReducer.paginationOrganization,
     filterObjOrganization: state.listReducer.filterObjOrganization,
     sortNamePerson: state.listReducer.sortNamePerson,
+    serverUrl: state.listReducer.serverUrl,
     sortOrderPerson: state.listReducer.sortOrderPerson,
     paginationPerson: state.listReducer.paginationPerson,
     filterObjPerson: state.listReducer.filterObjPerson,
