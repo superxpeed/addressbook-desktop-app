@@ -1,8 +1,8 @@
 {
-  "name": "addressbook-electron",
-  "productName": "addressbook-electron",
+  "name": "addressbook",
+  "productName": "Addressbook Desktop",
   "version": "1.0.0",
-  "description": "Addressbook",
+  "description": "Addressbook Desktop",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

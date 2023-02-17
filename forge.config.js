@@ -1,10 +1,18 @@
 module.exports = {
-    packagerConfig: {},
+    packagerConfig: {
+        icon: __dirname + '/assets/icon'
+    },
     rebuildConfig: {},
     makers: [
         {
             name: '@electron-forge/maker-squirrel',
-            config: {},
+            config: {
+                authors: 'Nikita Schneider',
+                description: 'Addressbook Desktop',
+                iconUrl: __dirname + '/assets/favicon.ico',
+                setupIcon: __dirname + '/assets/icon.ico',
+                setupExe: 'Addressbook-${version}-setup-x86-64.exe'
+            },
         },
         {
             name: '@electron-forge/maker-zip',
