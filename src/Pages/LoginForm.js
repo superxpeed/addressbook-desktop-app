@@ -21,6 +21,7 @@ import * as MenuActions from "./MenuFormActions";
 import * as url from "../Common/Url";
 import LoginIcon from "@mui/icons-material/Login";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SaveIcon from "@mui/icons-material/Save";
 import * as CommonActions from "./ListActions";
 
 export class LoginFormInner extends React.Component {
@@ -117,7 +118,14 @@ export class LoginFormInner extends React.Component {
     render() {
         return (<div>
             <Dialog fullWidth maxWidth="sm" open={true}>
-                <DialogTitle>Please login</DialogTitle>
+                <DialogTitle>
+                    <div style={{display: "inline-block", width: "512px"}}>
+                        Please login
+                    </div>
+                    <IconButton onClick={() => this.setState({showSettings: true})}>
+                        <SettingsOutlinedIcon/>
+                    </IconButton>
+                </DialogTitle>
                 <DialogContent sx={{paddingBottom: "16px"}}>
                     <Box sx={{display: "grid", gridTemplateRows: "repeat(2 1fr)"}}>
                         {this.getWarning()}
@@ -156,42 +164,48 @@ export class LoginFormInner extends React.Component {
                     </Box>
                 </DialogContent>
                 <DialogActions sx={{paddingTop: "0px"}}>
-                    <Grid container sx={{justifyContent: "left"}}>
+                    <Grid container sx={{justifyContent: "center"}}>
                         <Button startIcon={<LoginIcon/>}
-                                sx={{ml: 2, mr: 2, mb: 2, width: "calc(100% - 174px)", height: "56px"}}
+                                sx={{ml: 2, mr: 2, mb: 2, width: "100%", height: "56px"}}
                                 variant="contained"
-                                disabled={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0}
                                 onClick={this.login}>Login</Button>
-                        <Button startIcon={<SettingsOutlinedIcon/>} sx={{ml: 0, mr: 2, mb: 2, height: "56px"}}
-                                onClick={() => this.setState({showSettings: true})}
-                                variant="contained">Settings</Button>
                     </Grid>
                 </DialogActions>
             </Dialog>
-            <Dialog
-                onClose={() => this.setState({showSettings: false})}
-                aria-labelledby="roles-dialog-title"
-                open={this.state.showSettings}
-            >
+            <Dialog fullWidth maxWidth="xs"
+                    onClose={() => this.setState({showSettings: false})}
+                    aria-labelledby="roles-dialog-title"
+                    open={this.state.showSettings}>
                 <DialogTitle id="roles-dialog-title" onClose={() => this.setState({showSettings: false})}>
                     Settings
                 </DialogTitle>
                 <DialogContent dividers>
                     <TextField
-                        error={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0}
+                        error={this.state.serverUrl == null || this.state.serverUrl.trim().length === 0}
                         id="serverUrl"
                         type="text"
                         label="Enter server URL"
-                        value={this.props.serverUrl}
+                        value={this.state.serverUrl}
                         variant="outlined"
                         autoComplete="off"
                         sx={{mt: 1, display: "flex", height: "80px"}}
-                        helperText={this.props.serverUrl == null || this.props.serverUrl.trim().length === 0 ? "Required field!" : ""}
+                        helperText={this.state.serverUrl == null || this.state.serverUrl.trim().length === 0 ? "Required option!" : ""}
                         onChange={(e) => {
-                            this.props.changeServerUrl(e.target.value);
+                            this.setState({serverUrl: e.target.value});
                         }}
                     />
                 </DialogContent>
+                <DialogActions sx={{paddingTop: "0px"}}>
+                    <Grid container sx={{justifyContent: "center"}}>
+                        <Button startIcon={<SaveIcon/>} sx={{ml: 2, mr: 2, mb: 2, width: "100%", height: "56px"}}
+                                disabled={this.state.serverUrl == null || this.state.serverUrl.trim().length === 0}
+                                variant="contained"
+                                onClick={() => {
+                                    this.props.changeServerUrl(this.state.serverUrl);
+                                    this.setState({showSettings: false});
+                                }}>Save</Button>
+                    </Grid>
+                </DialogActions>
             </Dialog>
         </div>);
     }
