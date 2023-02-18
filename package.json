@@ -29,6 +29,7 @@
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.1.0",
     "event-source-polyfill": "^1.0.31",
     "export-to-csv": "^0.2.1",
     "js-cookie": "^3.0.1",

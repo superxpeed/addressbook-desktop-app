@@ -1,6 +1,7 @@
 import * as types from "../Common/Utils";
 import {Caches, fillCustomFns, OrgTypes} from "../Common/Utils";
 import * as tableActions from "../Table/TableActions";
+const { ipcRenderer } = window;
 
 const initialState = {
     tableDataOrganization: {
@@ -87,6 +88,7 @@ export default function listReducer(state = initialState, action = {}) {
                 drawerOpened: action.isOpened
             });
         case types.CHANGE_SERVER_URL:
+            ipcRenderer.send('save-server-url', action.serverUrl);
             return Object.assign({}, state, {
                 serverUrl: action.serverUrl
             });

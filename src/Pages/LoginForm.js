@@ -23,6 +23,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import * as CommonActions from "./ListActions";
+const { ipcRenderer } = window;
 
 export class LoginFormInner extends React.Component {
     state = {
@@ -48,6 +49,15 @@ export class LoginFormInner extends React.Component {
             this.props.clearAlerts();
         }, 500);
         document.addEventListener("keydown", this.keyDownTextField, false);
+        ipcRenderer.send('get-server-url');
+        ipcRenderer.receive('server-url', (arg) => {
+            this.updateServerUrl(arg)
+        });
+    }
+
+    updateServerUrl = (serverUrl) => {
+        this.setState({serverUrl: serverUrl});
+        this.props.changeServerUrl(serverUrl);
     }
 
     componentWillUnmount() {

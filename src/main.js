@@ -1,4 +1,13 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain} = require('electron');
+const Store = require('electron-store');
+
+let store = new Store();
+ipcMain.on('save-server-url', (event, arg) => {
+  store.set('server-url', arg);
+});
+ipcMain.on("get-server-url", (event) => {
+  event.sender.send("server-url", store.get('server-url'));
+});
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -12,7 +21,8 @@ const createWindow = () => {
     show: false,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-      webSecurity: false
+      webSecurity: false,
+      nodeIntegration: true
     },
   });
   let splash = new BrowserWindow({width: 800, height: 600, transparent: true, frame: false, alwaysOnTop: true});
