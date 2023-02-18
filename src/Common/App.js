@@ -104,7 +104,7 @@ export class AppInner extends React.Component {
                             width: "600px",
                             marginLeft: "10px",
                             marginRight: "10px",
-                            marginTop: "10px",
+                            marginTop: "40px",
                             height: "56px",
                             minHeight: "56px"
                         }}

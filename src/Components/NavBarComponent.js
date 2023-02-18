@@ -127,7 +127,7 @@ export class NavBarComponentInner extends React.Component {
         }
         return (
             <div>
-                <AppBar position="static">
+                <AppBar position="fixed" style={{marginTop: "30px"}}>
                     <Container maxWidth="xl">
                         <Toolbar disableGutters>
                             <Breadcrumbs separator={separator} style={{flex: 1}}
@@ -167,6 +167,7 @@ export class NavBarComponentInner extends React.Component {
                         </Toolbar>
                     </Container>
                 </AppBar>
+                <Toolbar/>
                 <Dialog
                     onClose={() => this.setState({showUserInfo: false})}
                     aria-labelledby="roles-dialog-title"
