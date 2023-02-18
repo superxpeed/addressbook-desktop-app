@@ -1,5 +1,6 @@
 const contextBridge = require('electron').contextBridge;
 const ipcRenderer = require('electron').ipcRenderer;
+import {Titlebar} from 'custom-electron-titlebar';
 
 const ipc = {
     'render': {
@@ -31,3 +32,7 @@ contextBridge.exposeInMainWorld(
         }
     }
 );
+
+window.addEventListener('DOMContentLoaded', () => {
+    return new Titlebar()
+});

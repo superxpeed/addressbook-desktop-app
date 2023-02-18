@@ -1,3 +1,10 @@
+.cet-title{
+    color: white;
+}
+
+.cet-menubar {
+    display: none!important;
+}
 #mui-rte-root {
     display: flex;
     min-height: 200px;
@@ -43,4 +50,15 @@
 
 th.MuiTableCell-head:first-of-type {
     vertical-align: bottom;
+}
+
+.cet-titlebar {
+    box-shadow: none!important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cet-titlebar {
+        background-color: #121212!important;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))!important;
+    }
 }

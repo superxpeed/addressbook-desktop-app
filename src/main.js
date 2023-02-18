@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain} = require('electron');
+import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
+setupTitlebar();
 const Store = require('electron-store');
-
 let store = new Store();
 ipcMain.on('save-server-url', (event, arg) => {
   if(arg != null)
@@ -18,9 +19,9 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1400,
     height: 900,
-    frame: true,
     show: false,
     icon: __dirname + '/favicon.ico',
+    titleBarStyle: 'hidden',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       webSecurity: false,
@@ -35,6 +36,7 @@ const createWindow = () => {
     splash.destroy();
     mainWindow.show();
   });
+  attachTitlebarToWindow(mainWindow);
 };
 
 app.on('ready', createWindow);
