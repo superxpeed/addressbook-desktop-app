@@ -3,7 +3,8 @@ const Store = require('electron-store');
 
 let store = new Store();
 ipcMain.on('save-server-url', (event, arg) => {
-  store.set('server-url', arg);
+  if(arg != null)
+    store.set('server-url', arg);
 });
 ipcMain.on("get-server-url", (event) => {
   event.sender.send("server-url", store.get('server-url'));
@@ -19,6 +20,7 @@ const createWindow = () => {
     height: 900,
     frame: true,
     show: false,
+    icon: __dirname + '/favicon.ico',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       webSecurity: false,
