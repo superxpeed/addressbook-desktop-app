@@ -118,8 +118,11 @@ export class AppInner extends React.Component {
                         </TransitionGroup>
                     </Drawer>
                 </React.Fragment>
-                <Snackbar anchorOrigin={{vertical: "top", horizontal: "right"}} open={this.state.open}
-                          autoHideDuration={1500} onClose={this.handleClose}>
+                <Snackbar sx={{marginTop: "30px"}} 
+                          anchorOrigin={{vertical: "top", horizontal: "right"}}
+                          open={this.state.open}
+                          autoHideDuration={1500} 
+                          onClose={this.handleClose}>
                     {lastAlertMessage}
                 </Snackbar>
             </CssBaseline>
