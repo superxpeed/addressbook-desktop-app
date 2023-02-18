@@ -56,6 +56,14 @@ th.MuiTableCell-head:first-of-type {
     box-shadow: none!important;
 }
 
+.cet-mac {
+    height: 32px!important;
+}
+
+.cet-titlebar {
+    background-color: #9c27b0!important;
+}
+
 @media (prefers-color-scheme: dark) {
     .cet-titlebar {
         background-color: #121212!important;
