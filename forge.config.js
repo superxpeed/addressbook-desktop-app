@@ -17,8 +17,27 @@ module.exports = {
         {
             name: '@electron-forge/maker-dmg',
             config: {
+                additionalDMGOptions: {
+                    window: {
+                        size: {
+                            height: 420,
+                            width: 516
+                        }
+                    }
+                },
                 format: 'ULFO',
-                icon: __dirname + '/assets/icon.icns'
+                icon: __dirname + '/assets/icon.icns',
+                overwrite: true,
+                background: __dirname + '/assets/background.png',
+                contents: [
+                    {"x": 400, "y": 240, "type": "link", "path": "/Applications"},
+                    {
+                        "x": 120,
+                        "y": 240,
+                        "type": "file",
+                        "path": __dirname + "/out/Addressbook Desktop-darwin-x64/Addressbook Desktop.app"
+                    }
+                ]
             }
         }
     ],
