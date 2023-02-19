@@ -7,7 +7,7 @@ npm run make
 ```
 # Windows
 ### Binary
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="627"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="531"/>  
 
 ### Control panel
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_control_panel.png" width="1000"/>  
@@ -16,7 +16,7 @@ npm run make
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_programs.png" width="320"/>  
 
 ### Desktop Shortcut
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_shortcut.png" width="284"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_shortcut.png" width="479"/>  
 
 
 ### Application Window
