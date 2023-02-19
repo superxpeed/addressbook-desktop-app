@@ -7,7 +7,7 @@ npm run make
 ```
 # Windows
 ### Binary
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="531"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="581"/>  
 
 ### Control panel
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_control_panel.png" width="1000"/>  
