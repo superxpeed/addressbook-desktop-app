@@ -5,7 +5,7 @@
 npm install --force
 npm run make
 ```
-## Windows
+# Windows
 ### Binary
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="627"/>  
 
@@ -24,7 +24,7 @@ npm run make
 
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_app_dark.png" width="1000"/>  
 
-## macOS
+# macOS
 ### Binary
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/macos_binary.png" width="1000"/>  
 
