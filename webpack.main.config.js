@@ -8,7 +8,6 @@ module.exports = {
         new HtmlWebpackPlugin({
         filename: 'splash.html',
         template: 'src/splash.html',
-        favicon: 'src/favicon.ico',
         chunks: ['main']
     })]
 };

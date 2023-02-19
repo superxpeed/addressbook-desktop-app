@@ -22,7 +22,6 @@ const createWindow = () => {
     width: 1400,
     height: 900,
     show: false,
-    icon: __dirname + '/favicon.ico',
     titleBarStyle: 'hidden',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
