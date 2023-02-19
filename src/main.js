@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain} = require('electron');
+const { app, BrowserWindow, ipcMain, Menu} = require('electron');
 import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
 setupTitlebar();
 const Store = require('electron-store');
@@ -14,6 +14,8 @@ ipcMain.on("get-server-url", (event) => {
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+
+Menu.setApplicationMenu(null)
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
