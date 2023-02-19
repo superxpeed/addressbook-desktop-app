@@ -9,7 +9,7 @@ module.exports = {
             config: {
                 authors: 'Nikita Schneider',
                 description: 'Addressbook Desktop',
-                iconUrl: __dirname + '/assets/favicon.ico',
+                iconUrl: __dirname + '/assets/icon.ico',
                 setupIcon: __dirname + '/assets/icon.ico',
                 setupExe: 'Addressbook-${version}-setup-x86-64.exe'
             },
