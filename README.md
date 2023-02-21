@@ -9,6 +9,9 @@ npm run make
 ### Binary
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="581"/>  
 
+### Signature
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_signature.png" width="540"/>  
+
 ### Control panel
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_control_panel.png" width="1000"/>  
 
