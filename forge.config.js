@@ -1,3 +1,5 @@
+const os = require('os')
+const arch = os.arch()
 module.exports = {
     packagerConfig: {
         icon: __dirname + '/assets/icon'
@@ -35,7 +37,7 @@ module.exports = {
                         "x": 120,
                         "y": 240,
                         "type": "file",
-                        "path": __dirname + "/out/Addressbook Desktop-darwin-x64/Addressbook Desktop.app"
+                        "path": __dirname + "/out/Addressbook Desktop-darwin-" + arch + "/Addressbook Desktop.app"
                     }
                 ]
             }
