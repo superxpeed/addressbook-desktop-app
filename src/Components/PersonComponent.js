@@ -145,13 +145,14 @@ export class PersonComponentInner extends React.Component {
                         </IconButton>
                     }
                 >
-                    <ListItemAvatar>
-                        <div onClick={() => this.saveFile(document.url, document.name)}>
-                            {<Avatar>
+                    <Link onClick={() => this.saveFile(document.url, document.name)}
+                          component="button">
+                        <ListItemAvatar>
+                            <Avatar>
                                 <CloudDownloadIcon color="primary"/>
-                            </Avatar>}
-                        </div>
-                    </ListItemAvatar>
+                            </Avatar>
+                        </ListItemAvatar>
+                    </Link>
                     <ListItemText
                         primary={document.name}
                         primaryTypographyProps={{ style: { wordWrap: "break-word" } }}
