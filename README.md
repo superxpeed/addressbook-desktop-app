@@ -2,7 +2,7 @@
 
 ## Building on target platform
 ```sh
-npm install
+npm install --force
 npm run make
 ```
 # Windows

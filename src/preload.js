@@ -4,8 +4,8 @@ import {Titlebar} from 'custom-electron-titlebar';
 
 const ipc = {
     'render': {
-        'send': ['get-server-url', 'save-server-url'],
-        'receive': ['server-url'],
+        'send': ['get-server-url', 'save-server-url', 'download'],
+        'receive': ['server-url', 'download complete'],
         'sendReceive': []
     }
 };

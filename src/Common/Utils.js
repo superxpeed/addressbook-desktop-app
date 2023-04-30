@@ -87,6 +87,15 @@ export class AuthTokenUtils {
         }
         headers.append("Authorization", `Bearer ${window.sessionStorage.getItem("auth-token")}`);
     };
+
+    static addAuthTokenFormData = (headers) => {
+        const auth = Cookies.get("Authorization");
+        if (auth != null && auth !== window.sessionStorage.getItem("auth-token")) {
+            window.sessionStorage.clear();
+            window.sessionStorage.setItem("auth-token", auth);
+        }
+        headers["Authorization"] = `Bearer ${window.sessionStorage.getItem("auth-token")}`;
+    };
 }
 
 export class Generator {

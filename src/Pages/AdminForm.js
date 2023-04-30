@@ -31,7 +31,7 @@ export class AdminFormInner extends React.Component {
         const currentUrl = window.location.hash;
         this.props.getBreadcrumbs(this.props.serverUrl, HashUtils.cleanHash(currentUrl));
         const token = window.sessionStorage.getItem("auth-token");
-        const newEventSource = new EventSource(this.props.serverUrl + "rest/admin/jvmState", {
+        const newEventSource = new EventSource(this.props.serverUrl + "/rest/admin/jvmState", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

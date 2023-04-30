@@ -1,5 +1,5 @@
 import React from "react";
-import {render} from "react-dom";
+import {createRoot} from "react-dom/client";
 import {applyMiddleware, combineReducers, compose, createStore,} from "redux";
 import {Provider} from "react-redux";
 import thunkMiddleware from "redux-thunk";
@@ -40,5 +40,5 @@ export default class Index extends React.Component {
     }
 }
 
-const root = document.getElementById("application");
-render(<Index/>, root);
+const root = createRoot(document.getElementById("application"));
+root.render(<Index/>);

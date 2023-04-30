@@ -51,10 +51,26 @@ export function showCommonErrorAlert(text) {
     };
 }
 
+export function showAxiosErrorAlert(text) {
+    return (dispatch) => {
+        dispatch({
+            type: ADD_ALERT, alert: text,
+        });
+    };
+}
+
 export function showCommonAlert(message) {
     return (dispatch) => {
         dispatch({
             type: ADD_ALERT, alert: {type: "success", message: message, headline: "Success"},
+        });
+    };
+}
+
+export function showCommonTextErrorAlert(message) {
+    return (dispatch) => {
+        dispatch({
+            type: ADD_ALERT, alert: {type: "error", message: message, headline: "Error"},
         });
     };
 }

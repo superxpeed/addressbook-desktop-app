@@ -93,8 +93,9 @@ export class OrganizationComponentInner extends React.Component {
             })
             .then((text) => {
                 if (isOk) {
+                    const result = JSON.parse(text);
                     this.props.onSuccess()
-                    this.props.updateRow(this.state.organization, Caches.ORGANIZATION_CACHE);
+                    this.props.updateRow(result.data, Caches.ORGANIZATION_CACHE);
                     if (toCreate)
                         this.props.showCommonAlert("Organization created!")
                     else
@@ -134,10 +135,10 @@ export class OrganizationComponentInner extends React.Component {
     }
 
     render() {
-        return (<div style={{padding: "10px"}}>
+        return (<div style={{padding: "8px"}}>
             <div
                 style={{
-                    width: "50%", display: "inline-block", verticalAlign: "top", paddingRight: "5px",
+                    width: "50%", display: "inline-block", verticalAlign: "top", paddingRight: "4px",
                 }}
             >
                 <TextField
@@ -168,7 +169,7 @@ export class OrganizationComponentInner extends React.Component {
             </div>
             <div
                 style={{
-                    width: "50%", display: "inline-block", verticalAlign: "top", paddingLeft: "5px",
+                    width: "50%", display: "inline-block", verticalAlign: "top", paddingLeft: "4px",
                 }}
             >
                 <TextField

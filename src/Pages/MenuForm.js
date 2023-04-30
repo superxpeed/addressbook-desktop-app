@@ -58,7 +58,7 @@ export class MenuFormInner extends React.Component {
                 style={{
                     height: "200px",
                     width: "200px",
-                    margin: "10px",
+                    margin: "8px",
                     textAlign: "center",
                     fontSize: "x-large",
                 }}

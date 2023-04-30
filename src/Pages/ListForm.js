@@ -212,7 +212,7 @@ export class ListFormInner extends React.Component {
                     startIcon={<GroupAddIcon/>}
                     variant="contained"
                     color={this.props.useDarkTheme ? "primary" : "topButtonColor"}
-                    style={{marginRight: "5px"}}
+                    style={{marginRight: "4px"}}
                     disabled={this.props.selectedRowsOrganization.length !== 1 || this.state.createNewPerson === true}
                     onClick={() => this.setState({
                         activeTab: this.lastKey + 1,
