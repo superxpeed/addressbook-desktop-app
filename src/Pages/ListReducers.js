@@ -88,7 +88,7 @@ export default function listReducer(state = initialState, action = {}) {
                 drawerOpened: action.isOpened
             });
         case types.CHANGE_SERVER_URL:
-            ipcRenderer.send('save-server-url', action.serverUrl);
+            ipcRenderer.send("save-server-url", action.serverUrl);
             return Object.assign({}, state, {
                 serverUrl: action.serverUrl
             });

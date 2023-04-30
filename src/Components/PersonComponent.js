@@ -584,8 +584,9 @@ export class PersonComponentInner extends React.Component {
             url: url,
             filename: name
         });
-        ipcRenderer.receive('download complete', (file) => {
+        ipcRenderer.receive("download complete", (file) => {
             this.props.showCommonAlert("Download complete")
+            ipcRenderer.removeAllListeners("download complete");
         });
     }
 

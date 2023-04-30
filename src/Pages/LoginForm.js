@@ -52,9 +52,10 @@ export class LoginFormInner extends React.Component {
             this.props.clearAlerts();
         }, 500);
         document.addEventListener("keydown", this.keyDownTextField, false);
-        ipcRenderer.send('get-server-url');
-        ipcRenderer.receive('server-url', (arg) => {
+        ipcRenderer.send("get-server-url");
+        ipcRenderer.receive("server-url", (arg) => {
             this.updateServerUrl(arg)
+            ipcRenderer.removeAllListeners("server-url");
         });
     }
 
