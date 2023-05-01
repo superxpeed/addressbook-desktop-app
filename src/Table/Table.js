@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as TableActions from "./TableActions";
 import MaterialReactTable from "material-react-table";
-import {Box, TextField} from "@mui/material";
+import {Box, LinearProgress, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {ExportToCsv} from "export-to-csv";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -250,7 +250,11 @@ export class TableInner extends React.Component {
                 }}
             />);
         } else {
-            materialTable = <div/>;
+            materialTable = <LinearProgress sx={{
+                width: "100%",
+                marginTop: "30px",
+                marginBottom: "30px"
+            }}/>;
         }
         return <div>{materialTable}</div>;
     }

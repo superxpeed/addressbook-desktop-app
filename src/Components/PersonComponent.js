@@ -625,27 +625,15 @@ export class PersonComponentInner extends React.Component {
     }
 
     getUploadElement = () => {
+        let targetElement = <div/>
         if (this.state.uploadInProgress === true) {
-            return <Grid container
-                         justifyContent="center"
-                         alignItems="center"
-                         sx={{
-                             height: "56px",
-                             width: "100%",
-                             marginTop: "30px"
-                         }}>
-                <CircularProgressWithLabel value={this.state.percentCompleted}/>
-            </Grid>
+            targetElement = <CircularProgressWithLabel value={this.state.percentCompleted}/>
         } else {
-            return <Button startIcon={<FileUploadOutlined/>}
-                           sx={{
-                               height: "56px",
-                               width: "100%",
-                               marginTop: "30px"
-                           }}
-                           component="label"
-                           variant="outlined"
-                           disabled={this.state.person.id == null}>
+            targetElement = <Button startIcon={<FileUploadOutlined/>}
+                                    sx={{height: "56px", width: "100%",}}
+                                    component="label"
+                                    variant="outlined"
+                                    disabled={this.state.person.id == null}>
                 Upload document
                 <input hidden accept=".xlsx,.xls,image/*,.doc,.docx,.ppt,.pptx,.txt,.pdf"
                        name="file"
@@ -653,6 +641,17 @@ export class PersonComponentInner extends React.Component {
                        type="file"/>
             </Button>
         }
+        return <Grid container
+                     justifyContent="center"
+                     alignItems="center"
+                     sx={{
+                         height: "56px",
+                         width: "100%",
+                         marginTop: "30px",
+                         marginBottom: "20px"
+                     }}>
+            {targetElement}
+        </Grid>
     }
 
     render() {
