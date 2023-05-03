@@ -1,3 +1,5 @@
+const babelConfig = require("./babel.config");
+
 module.exports = [{
     test: /native_modules[/\\].+\.node$/,
     use: 'node-loader',
@@ -11,11 +13,9 @@ module.exports = [{
         },
     },
 }, {
-    test: /\.jsx?$/,
+    test: /\.(js|ts)x?$/,
     use: {
         loader: 'babel-loader',
-        options: {
-            exclude: /node_modules/, presets: ['@babel/preset-react']
-        }
+        options: babelConfig
     }
 },];

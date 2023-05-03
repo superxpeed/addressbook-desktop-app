@@ -1,0 +1,17 @@
+export const GET_LIST: string = "/rest/getList";
+export const GET_CONTACT_LIST: string = "/rest/getContactList";
+export const SAVE_CONTACT_LIST: string = "/rest/saveOrCreateContacts";
+export const SAVE_PERSON: string = "/rest/saveOrCreatePerson";
+export const UPLOAD_DOCUMENT: string = "/rest/uploadDocument";
+export const DELETE_DOCUMENT: string = "/rest/deleteDocument";
+export const GET_DOCUMENT_LIST: string = "/rest/getDocumentList";
+export const SAVE_ORGANIZATION: string = "/rest/saveOrCreateOrganization";
+export const GET_NEXT_LEVEL_MENUS: string = "/rest/getNextLevelMenus";
+export const GET_BREADCRUMBS: string = "/rest/getBreadcrumbs";
+export const LOCK_RECORD: string = "/rest/lockRecord";
+export const UNLOCK_RECORD: string = "/rest/unlockRecord";
+export const GET_USER_INFO: string = "/rest/getUserInfo";
+export const GET_BUILD_INFO: string = "/rest/getBuildInfo";
+export const LOGOUT: string = "/rest/logout";
+export const CHECK_IF_PAGE_EXISTS: string = "/rest/checkIfPageExists";
+export const AUTH: string = "/auth";

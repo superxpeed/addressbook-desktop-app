@@ -1,16 +1,16 @@
-const {app, BrowserWindow, ipcMain, Menu} = require('electron');
+const {app, BrowserWindow, ipcMain, Menu} = require("electron");
 import {setupTitlebar, attachTitlebarToWindow} from "custom-electron-titlebar/main";
 
 setupTitlebar();
-const Store = require('electron-store');
+const Store = require("electron-store");
 const {download} = require("electron-dl");
 let store = new Store();
-ipcMain.on('save-server-url', (event, arg) => {
+ipcMain.on("save-server-url", (event, arg) => {
     if (arg != null)
-        store.set('server-url', arg);
+        store.set("server-url", arg);
 });
 ipcMain.on("get-server-url", (event) => {
-    event.sender.send("server-url", store.get('server-url'));
+    event.sender.send("server-url", store.get("server-url"));
 });
 
 ipcMain.on("download", (event, info) => {
@@ -21,7 +21,7 @@ ipcMain.on("download", (event, info) => {
     }).then(dl => event.sender.send("download complete", dl.getSavePath()));
 });
 
-if (require('electron-squirrel-startup')) {
+if (require("electron-squirrel-startup")) {
     app.quit();
 }
 
@@ -32,7 +32,7 @@ const createWindow = () => {
         width: 1400,
         height: 900,
         show: false,
-        titleBarStyle: 'hidden',
+        titleBarStyle: "hidden",
         webPreferences: {
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
             webSecurity: false,
@@ -42,23 +42,23 @@ const createWindow = () => {
     let splash = new BrowserWindow({width: 800, height: 600, transparent: true, frame: false, alwaysOnTop: true});
     splash.loadURL(`file://${__dirname}/splash.html`);
     mainWindow.setMenuBarVisibility(false);
-    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY + '#login');
-    mainWindow.once('ready-to-show', () => {
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY + "#login");
+    mainWindow.once("ready-to-show", () => {
         splash.destroy();
         mainWindow.show();
     });
     attachTitlebarToWindow(mainWindow);
 };
 
-app.on('ready', createWindow);
+app.on("ready", createWindow);
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
         app.quit();
     }
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
     }

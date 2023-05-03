@@ -1,17 +1,17 @@
-const contextBridge = require('electron').contextBridge;
-const ipcRenderer = require('electron').ipcRenderer;
-import {Titlebar} from 'custom-electron-titlebar';
+const contextBridge = require("electron").contextBridge;
+const ipcRenderer = require("electron").ipcRenderer;
+import {Titlebar} from "custom-electron-titlebar";
 
 const ipc = {
-    'render': {
-        'send': ['get-server-url', 'save-server-url', 'download'],
-        'receive': ['server-url', 'download complete'],
-        'sendReceive': []
+    "render": {
+        "send": ["get-server-url", "save-server-url", "download"],
+        "receive": ["server-url", "download complete"],
+        "sendReceive": []
     }
 };
 
 contextBridge.exposeInMainWorld(
-    'ipcRenderer', {
+    "ipcRenderer", {
         send: (channel, args) => {
             let validChannels = ipc.render.send;
             if (validChannels.includes(channel)) {
@@ -29,10 +29,13 @@ contextBridge.exposeInMainWorld(
             if (validChannels.includes(channel)) {
                 return ipcRenderer.invoke(channel, args);
             }
+        },
+        removeAllListeners: (channel) => {
+            ipcRenderer.removeAllListeners(channel);
         }
     }
 );
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
     return new Titlebar()
 });
