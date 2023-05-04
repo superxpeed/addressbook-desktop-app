@@ -1,5 +1,14 @@
 # [Addressbook](https://github.com/dredwardhyde/addressbook) Desktop Application (macOS & Windows)
 
+### Features
+
+- **[Dark/Light Theme support](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/src/Common/App.js#L14)** 
+- **Building [Windows](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/forge.config.js#L10) and [macOS for x86/AArch64](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/forge.config.js#L20)(DMG with [custom layout](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/forge.config.js#L34)) installers using Electron Forge**
+- **Communication between ipcMain and ipcRenderer modules using [ContextBridge](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/src/preload.js#L13)**
+- **[File downloading](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/src/main.js#L17)**
+- **[Custom title bar](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/src/preload.js#L39)**
+- **[Custom splash screen](https://github.com/dredwardhyde/addressbook-desktop-app/blob/master/src/main.js#L43)**
+
 ### Building on target platform
 ```sh
 npm install --force
