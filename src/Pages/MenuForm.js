@@ -70,12 +70,6 @@ export class MenuFormInner extends React.Component {
             </Button>);
         });
         const breads = Utils.getBreadcrumbsList(this.props.breadcrumbs, this.props.useDarkTheme)
-        if (this.props.breadcrumbs.length === 0) {
-            breads.push(<Link underline="hover" color={this.props.useDarkTheme ? "inherit" : "white"} key="/root"
-                              href="#/">
-                Home
-            </Link>);
-        }
         return (<div>
             <NavBarComponent breads={breads}/>
             {allMenus}
