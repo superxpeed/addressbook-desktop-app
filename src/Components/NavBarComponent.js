@@ -103,8 +103,8 @@ export class NavBarComponentInner extends React.Component {
 
     getRoles = () => {
         const allRoles = [];
-        let targetBoxColor = this.props.useDarkTheme ? "#90caf9" : "#9c27b0"
-        let targetTextColor = this.props.useDarkTheme ? "#000000" : "#FFFFFF"
+        let targetBoxColor = this.props.useDarkTheme ? "#917FB3" : "#3700B3"
+        let targetTextColor = this.props.useDarkTheme ? "#FFFFFF" : "#FFFFFF"
         this.state.roles.forEach((value, index) => {
             if (index === 0)
                 allRoles.push(<Chip key={value} label={value}

@@ -70,8 +70,8 @@ export class TableInner extends React.Component {
                             title={Table.html2text(cell.getValue())}>{Table.html2text(cell.getValue())}</div>
             }
         if (fieldName === "salary") {
-            let targetBoxColor = this.props.useDarkTheme ? "#90caf9" : "#9c27b0"
-            let targetTextColor = this.props.useDarkTheme ? "#000000" : "#FFFFFF"
+            let targetBoxColor = this.props.useDarkTheme ? "#917FB3" : "#3700B3"
+            let targetTextColor = this.props.useDarkTheme ? "#FFFFFF" : "#FFFFFF"
             return function Formatter({cell}) {
                 return <Box
                     sx={{
@@ -176,7 +176,7 @@ export class TableInner extends React.Component {
                 columns={columns}
                 enableRowSelection
                 enableMultiRowSelection={this.props.selectMode === "multi"}
-                positionToolbarAlertBanner={this.props.selectMode === "multi" ? "bottom" : "none"}
+                positionToolbarAlertBanner={"none"}
                 onColumnFiltersChange={this.onFilterChange}
                 onPaginationChange={this.onPaginationChange}
                 onSortingChange={this.onSortChange}

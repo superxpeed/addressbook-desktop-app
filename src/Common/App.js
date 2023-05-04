@@ -2,7 +2,6 @@ import React from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import {connect} from "react-redux";
-import {purple} from "@mui/material/colors";
 import {Alert, AlertTitle, Collapse, Drawer, Snackbar} from "@mui/material";
 import * as CommonActions from "../Pages/ListActions";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
@@ -14,11 +13,14 @@ import {TransitionGroup} from "react-transition-group";
 const darkTheme = createTheme({
     palette: {
         mode: "dark",
+        primary: {
+            main: "#917FB3"
+        },
         topButtonColor: {
-            main: "#90caf9"
+            main: "#917FB3"
         },
         topServiceButtonColor: {
-            main: "#90caf9"
+            main: "#917FB3"
         }
     },
 });
@@ -26,10 +28,10 @@ const darkTheme = createTheme({
 const lightTheme = createTheme({
     palette: {
         primary: {
-            main: purple[500]
+            main: "#6200EE"
         },
         topButtonColor: {
-            main: purple[700]
+            main: "#3700B3"
         },
         topServiceButtonColor: {
             main: "#FFFFFF"
