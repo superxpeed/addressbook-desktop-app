@@ -16,16 +16,16 @@ npm run make
 ```
 ### Windows
 #### Binary
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="882"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_binary.png" width="765"/>  
 
 #### Signature
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_signature.png" width="405"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_signature.png" width="437"/>  
 
 #### Control panel
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_control_panel.png" width="1000"/>  
 
 #### Start Menu
-<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_programs.png" width="289"/>  
+<img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_programs.png" width="298"/>  
 
 #### Desktop Shortcut
 <img src="https://raw.githubusercontent.com/dredwardhyde/addressbook-desktop-app/master/readme/windows_installed_shortcut.png" width="476"/>  
