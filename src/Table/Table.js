@@ -42,7 +42,7 @@ export class TableInner extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (JSON.stringify(this.props.filterObj) !== JSON.stringify(prevProps.filterObj)) {
+        if (JSON.stringify(Utils.convertFilterObj(this.props.filterObj, this.props.customFilterFns)) !== JSON.stringify(Utils.convertFilterObj(prevProps.filterObj, prevProps.customFilterFns))) {
             this.props.refreshTable(this.props.pagination.pageIndex + 1, this.props.pagination.pageSize, this.props.sortName, this.props.sortOrder, Utils.convertFilterObj(this.props.filterObj, this.props.customFilterFns), this.props.cache);
         }
     }

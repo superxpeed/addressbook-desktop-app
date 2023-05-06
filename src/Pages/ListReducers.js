@@ -110,7 +110,12 @@ export default function listReducer(state = initialState, action = {}) {
             });
         case tableActions.UPDATE_ROW_IN_TABLE + Caches.PERSON_CACHE: {
             let newSelected = state.selectedRowsPerson.filter((it) => it.id !== action.row.id);
-            newSelected.push(action.row);
+            let targetIdx = state.selectedRowsPerson.map(it => it.id).indexOf(action.row.id);
+            if(targetIdx === -1) {
+                newSelected.push(action.row);
+            } else {
+                newSelected.splice(targetIdx, 0, action.row);
+            }
             return Object.assign({}, state, {selectedRowsPerson: newSelected});
         }
         case tableActions.ON_PAGINATION_CHANGE + Caches.PERSON_CACHE: {
