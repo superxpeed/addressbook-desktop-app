@@ -294,7 +294,6 @@ export class PersonComponentInner extends React.Component {
                         person: {$set: savedPerson}, contactList: {$set: JSON.parse(text).data},
                     }));
                     if (creation) {
-                        this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, personId, "unlock", this.props.showNotification);
                         this.props.showCommonAlert("Person created!")
                     } else {
                         this.props.showCommonAlert("Changes saved!")
@@ -504,9 +503,6 @@ export class PersonComponentInner extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.person !== prevProps.person) {
-            if (this.state.person != null) {
-                this.props.lockUnlockRecord(this.props.serverUrl, Caches.PERSON_CACHE, this.state.person["id"], "unlock", this.props.showNotification);
-            }
             let newResume = this.props.person["resume"] == null ? "<div/>" : this.props.person["resume"];
             let salaryPerson = this.props.person["salary"] == null ? "" : this.props.person["salary"].substring(0, this.props.person["salary"].length - 4)
             let currencyPerson = this.props.person["salary"] == null ? "USD" : this.props.person["salary"].substring(this.props.person["salary"].length - 3)

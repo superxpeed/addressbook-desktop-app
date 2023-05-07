@@ -48,9 +48,6 @@ export class OrganizationComponentInner extends React.Component {
     }
 
     updateData = () => {
-        if (this.state.organization["id"] != null && this.state.create === false) {
-            this.props.lockUnlockRecord(this.props.serverUrl, Caches.ORGANIZATION_CACHE, this.state.organization["id"], "unlock", this.props.showNotification);
-        }
         if (this.props.organization["id"] == null) {
             this.setState({
                 organization: {
@@ -74,6 +71,9 @@ export class OrganizationComponentInner extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.organization !== prevProps.organization) {
             this.updateData();
+        }
+        if (prevProps.organization["id"] !== this.props.organization["id"]) {
+            this.props.lockUnlockRecord(this.props.serverUrl, Caches.ORGANIZATION_CACHE, prevProps.organization["id"], "unlock", this.props.showNotification);
         }
     }
 
